@@ -1,0 +1,148 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ResearchCard from "../components/ResearchCard.astro";
+import ProjectPlaceholder from "../components/ProjectPlaceholder.astro";
+import { profile } from "../content/profile";
+import { researchAreas } from "../content/research";
+import { skillGroups } from "../content/skills";
+---
+
+<BaseLayout>
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-main">
+        <p class="eyebrow">Researcher & scientific software engineer</p>
+        <h1>Sher Afghan<br /><em>Malik</em></h1>
+        <p class="headline">{profile.headline}</p>
+        <div class="hero-actions">
+          <a class="button" href="/research/">Explore my research <span aria-hidden="true">→</span></a>
+          <a class="button secondary" href="/cv/">View CV</a>
+        </div>
+      </div>
+      <aside class="hero-note" aria-label="Professional summary">
+        <div class="orbit" aria-hidden="true"><span></span><span></span><span></span></div>
+        <p>{profile.intro}</p>
+        <dl>
+          <div><dt>Based in</dt><dd>{profile.location}</dd></div>
+          <div><dt>Affiliation</dt><dd>RWTH Aachen University</dd></div>
+          <div><dt>Focus</dt><dd>Research + engineering</dd></div>
+        </dl>
+      </aside>
+    </div>
+    <div class="container scroll-cue" aria-hidden="true"><span>Scroll to explore</span><i></i></div>
+  </section>
+
+  <section class="section" id="about">
+    <div class="container split">
+      <div>
+        <p class="eyebrow">About</p>
+        <h2>Turning mathematical insight into working software.</h2>
+      </div>
+      <div class="about-copy">
+        <p class="lede">{profile.bio}</p>
+        <p>I work across C++, Python, PyTorch, automatic differentiation, and HPC environments—implementing research algorithms, debugging numerical systems, and building reproducible GPU experiment workflows.</p>
+        <a class="text-link" href="/cv/">Professional profile →</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section research-preview">
+    <div class="container">
+      <div class="section-intro">
+        <div><p class="eyebrow">Research</p><h2>Methods for understanding—and making—models efficient.</h2></div>
+        <p>My doctoral research investigates how derivative information and rigorous interval bounds can reveal the significance of components inside neural networks.</p>
+      </div>
+      <div class="research-list">
+        {researchAreas.map((area) => <ResearchCard {...area} />)}
+      </div>
+      <a class="button secondary" href="/research/">Read the research overview →</a>
+    </div>
+  </section>
+
+  <section class="section" id="projects">
+    <div class="container split project-split">
+      <div><p class="eyebrow">Projects</p><h2>Research ideas, implemented.</h2></div>
+      <ProjectPlaceholder />
+    </div>
+  </section>
+
+  <section class="section" id="skills">
+    <div class="container">
+      <div class="section-intro compact">
+        <div><p class="eyebrow">Capabilities</p><h2>A practical scientific computing toolkit.</h2></div>
+        <p>From numerical kernels to multi-GPU experiments, I work across the full research-software loop.</p>
+      </div>
+      <div class="skills-grid">
+        {skillGroups.map((group, index) => (
+          <article>
+            <span>0{index + 1}</span>
+            <h3>{group.title}</h3>
+            <ul>{group.skills.map((skill) => <li>{skill}</li>)}</ul>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section contact" id="contact">
+    <div class="container contact-inner">
+      <p class="eyebrow">Contact</p>
+      <h2>Interested in research, engineering, or collaboration?</h2>
+      <p class="lede">The best current way to connect is through my public GitHub profile. Additional professional contact links will be added once verified.</p>
+      <a class="button" href={profile.github} rel="me noreferrer">Find me on GitHub ↗</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero { min-height: calc(100vh - 5rem); padding: clamp(4rem, 9vw, 8rem) 0 2rem; }
+  .hero-grid { display: grid; grid-template-columns: minmax(0, 1.65fr) minmax(280px, .65fr); gap: clamp(3rem, 8vw, 8rem); align-items: end; }
+  h1 { margin: 1.3rem 0 2rem; }
+  h1 em { color: var(--accent); font-weight: inherit; }
+  .headline { max-width: 720px; color: var(--muted); font-size: clamp(1.15rem, 2vw, 1.55rem); }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: .8rem; margin-top: 2.5rem; }
+  .hero-note { padding: 2rem 0 0 2rem; border-left: 1px solid var(--line); }
+  .hero-note > p { font-size: 1.05rem; }
+  .orbit { position: relative; width: 8rem; aspect-ratio: 1; margin: 0 0 3rem auto; border: 1px solid var(--line); border-radius: 50%; }
+  .orbit::after { content: "IASA"; position: absolute; inset: 0; display: grid; place-items: center; font: 700 .75rem var(--mono); color: var(--accent); }
+  .orbit span { position: absolute; width: .45rem; aspect-ratio: 1; border-radius: 50%; background: var(--accent); }
+  .orbit span:nth-child(1) { top: 13%; left: 16%; }.orbit span:nth-child(2) { right: -3px; top: 48%; }.orbit span:nth-child(3) { bottom: 8%; left: 22%; }
+  dl { margin: 2rem 0 0; }
+  dl div { padding: .8rem 0; border-top: 1px solid var(--line); }
+  dt { color: var(--muted); font: 600 .65rem var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+  dd { margin: .25rem 0 0; font-size: .88rem; }
+  .scroll-cue { display: flex; align-items: center; gap: 1rem; margin-top: clamp(4rem, 8vw, 8rem); color: var(--muted); font: 600 .67rem var(--mono); letter-spacing: .1em; text-transform: uppercase; }
+  .scroll-cue i { flex: 1; height: 1px; background: var(--line); }
+  .split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(320px, .9fr); gap: clamp(3rem, 9vw, 9rem); }
+  .about-copy { padding-top: 2.7rem; }
+  .about-copy > p:not(.lede) { color: var(--muted); }
+  .section-intro { display: grid; grid-template-columns: 1.3fr .7fr; gap: 4rem; align-items: end; margin-bottom: 4rem; }
+  .section-intro > p { max-width: 440px; color: var(--muted); }
+  .section-intro.compact { margin-bottom: 3rem; }
+  .research-list { margin-bottom: 2.5rem; }
+  .project-split { align-items: center; }
+  .skills-grid { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+  .skills-grid article { min-height: 320px; padding: 1.7rem; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .skills-grid article > span { color: var(--accent); font: 700 .72rem var(--mono); }
+  .skills-grid h3 { margin: 3rem 0 1.4rem; font-size: 1.45rem; }
+  .skills-grid ul { margin: 0; padding: 0; color: var(--muted); list-style: none; }
+  .skills-grid li { padding: .28rem 0; }
+  .contact { background: var(--surface); }
+  .contact-inner { max-width: 920px; text-align: center; }
+  .contact-inner .eyebrow { justify-content: center; }
+  .contact-inner .lede { max-width: 700px; margin: 0 auto 2rem; }
+  @media (max-width: 900px) {
+    .hero-grid, .split, .section-intro { grid-template-columns: 1fr; }
+    .hero-note { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; border-left: 0; border-top: 1px solid var(--line); padding-left: 0; }
+    .hero-note .orbit { display: none; }
+    .hero-note dl { margin: 0; }
+    .section-intro { gap: 1rem; }
+    .skills-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 560px) {
+    .hero { min-height: auto; }
+    .hero-note { grid-template-columns: 1fr; }
+    .skills-grid { grid-template-columns: 1fr; }
+    .skills-grid article { min-height: auto; }
+  }
+</style>

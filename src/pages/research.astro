@@ -1,0 +1,69 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ResearchCard from "../components/ResearchCard.astro";
+import { profile } from "../content/profile";
+import { researchAreas, researchThemes } from "../content/research";
+---
+
+<BaseLayout title={`Research — ${profile.name}`} description="Research in interval adjoints, automatic differentiation, sensitivity analysis, and structured neural-network pruning.">
+  <header class="page-hero">
+    <div class="container">
+      <p class="eyebrow">Research</p>
+      <h1>Understanding significance through derivatives and intervals.</h1>
+      <p class="lede">My doctoral work develops methods for analyzing which parts of a neural network matter, combining automatic differentiation with interval arithmetic and applying the resulting information to structured pruning.</p>
+    </div>
+  </header>
+  <section class="section">
+    <div class="container intro-grid">
+      <div><p class="eyebrow">Dissertation</p><h2>{profile.dissertation}</h2></div>
+      <div>
+        <p class="lede">Interval Adjoint Significance Analysis (IASA) propagates interval-valued tangent or adjoint information through a model to estimate or bound the significance of neurons and channels.</p>
+        <p>The broader goal is to make sensitivity-based decisions more robust and useful for model compression. The research spans multilayer perceptrons and convolutional networks, including VGG and ResNet architectures.</p>
+        <p class="note">The dissertation is in the formal RWTH submission and examination process. Exact experimental results will be published here only after verification against the final thesis.</p>
+      </div>
+    </div>
+  </section>
+  <section class="section process-section">
+    <div class="container">
+      <p class="eyebrow">Concept</p>
+      <h2>From a trained model to an efficient one.</h2>
+      <ol class="process">
+        <li><span>01</span><strong>Propagate</strong><p>Compute interval tangent or adjoint information through the network.</p></li>
+        <li><span>02</span><strong>Estimate</strong><p>Use the derivative information to assess component significance.</p></li>
+        <li><span>03</span><strong>Prune</strong><p>Remove less significant neurons or channels in a structured way.</p></li>
+        <li><span>04</span><strong>Refine</strong><p>Recover behavior with bias compensation and gradient-aware fine-tuning.</p></li>
+      </ol>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <p class="eyebrow">Focus areas</p>
+      <div class="cards">{researchAreas.map((area) => <ResearchCard {...area} />)}</div>
+    </div>
+  </section>
+  <section class="section themes-section">
+    <div class="container themes-grid">
+      <div><p class="eyebrow">Research themes</p><h2>Where the work connects.</h2></div>
+      <ul>{researchThemes.map((theme) => <li>{theme}</li>)}</ul>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-hero { padding: clamp(5rem, 11vw, 10rem) 0; }
+  .page-hero h1 { max-width: 1050px; font-size: clamp(3.2rem, 7vw, 7rem); }
+  .page-hero .lede { max-width: 760px; }
+  .intro-grid, .themes-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(3rem, 9vw, 9rem); }
+  .intro-grid p:not(.eyebrow) { color: var(--muted); }
+  .note { margin-top: 2rem; padding: 1rem 1.25rem; border-left: 2px solid var(--accent); background: var(--surface); font-size: .88rem; }
+  .process-section, .themes-section { background: var(--surface); }
+  .process { display: grid; grid-template-columns: repeat(4, 1fr); margin: 4rem 0 0; padding: 0; list-style: none; border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+  .process li { min-height: 280px; padding: 1.5rem; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .process span { display: block; color: var(--accent); font: 700 .75rem var(--mono); }
+  .process strong { display: block; margin: 4rem 0 1rem; font-family: var(--display); font-size: 1.6rem; font-weight: 500; }
+  .process p { color: var(--muted); font-size: .92rem; }
+  .themes-grid ul { display: grid; grid-template-columns: 1fr 1fr; margin: 0; padding: 0; list-style: none; }
+  .themes-grid li { padding: 1.15rem 0; border-top: 1px solid var(--line); }
+  @media (max-width: 850px) { .intro-grid, .themes-grid { grid-template-columns: 1fr; } .process { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 520px) { .process, .themes-grid ul { grid-template-columns: 1fr; } .process li { min-height: auto; } .process strong { margin-top: 2rem; } }
+</style>

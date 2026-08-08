@@ -1,0 +1,32 @@
+:root {
+  --paper: #f5f6f0;
+  --surface: #ecefe7;
+  --surface-strong: #e2e8df;
+  --ink: #142327;
+  --muted: #5a696b;
+  --line: #cbd3cd;
+  --accent: #126b65;
+  --accent-bright: #0e8278;
+  --accent-soft: #d4ebe5;
+  --header: color-mix(in srgb, var(--paper) 88%, transparent);
+  --shadow: 0 24px 70px rgba(25, 43, 44, 0.08);
+  --display: Georgia, "Times New Roman", serif;
+  --sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  color-scheme: light;
+}
+
+[data-theme="dark"] {
+  --paper: #0c1619;
+  --surface: #132125;
+  --surface-strong: #1a2c30;
+  --ink: #e8eee9;
+  --muted: #a7b6b4;
+  --line: #2d4144;
+  --accent: #75d1c1;
+  --accent-bright: #91e3d4;
+  --accent-soft: #173934;
+  --header: color-mix(in srgb, var(--paper) 88%, transparent);
+  --shadow: 0 24px 70px rgba(0, 0, 0, 0.25);
+  color-scheme: dark;
+}

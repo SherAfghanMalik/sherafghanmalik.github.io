@@ -1,0 +1,14 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ProjectPlaceholder from "../components/ProjectPlaceholder.astro";
+import { profile } from "../content/profile";
+---
+<BaseLayout title={`Projects — ${profile.name}`} description="Research software and scientific computing projects by Sher Afghan Malik.">
+  <header class="page-hero"><div class="container"><p class="eyebrow">Projects</p><h1>Software built around research questions.</h1><p class="lede">This page will showcase selected public research and engineering work after each repository has been reviewed and documented.</p></div></header>
+  <section class="section"><div class="container"><ProjectPlaceholder /></div></section>
+</BaseLayout>
+<style>
+  .page-hero { padding: clamp(5rem, 11vw, 10rem) 0; }
+  h1 { max-width: 1000px; font-size: clamp(3.2rem, 7vw, 7rem); }
+  .lede { max-width: 700px; }
+</style>

@@ -1,0 +1,30 @@
+---
+interface Props {
+  number: string;
+  title: string;
+  summary: string;
+  topics: readonly string[];
+}
+const { number, title, summary, topics } = Astro.props;
+---
+
+<article>
+  <span class="number">{number}</span>
+  <div>
+    <h3>{title}</h3>
+    <p>{summary}</p>
+    <ul aria-label="Topics">
+      {topics.map((topic) => <li>{topic}</li>)}
+    </ul>
+  </div>
+</article>
+
+<style>
+  article { display: grid; grid-template-columns: 4rem 1fr; gap: 1rem; padding: 2rem 0; border-top: 1px solid var(--line); }
+  .number { color: var(--accent); font: 700 .78rem var(--mono); }
+  h3 { margin-bottom: .8rem; }
+  p { max-width: 700px; color: var(--muted); }
+  ul { display: flex; flex-wrap: wrap; gap: .5rem; margin: 1.25rem 0 0; padding: 0; list-style: none; }
+  li { padding: .3rem .65rem; background: var(--surface); color: var(--muted); font: 600 .72rem var(--mono); }
+  @media (max-width: 520px) { article { grid-template-columns: 1fr; } }
+</style>

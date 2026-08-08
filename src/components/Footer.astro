@@ -1,0 +1,28 @@
+---
+import { profile } from "../content/profile";
+const year = new Date().getFullYear();
+---
+
+<footer>
+  <div class="container footer-inner">
+    <div>
+      <a class="footer-name" href="/">{profile.name}</a>
+      <p>{profile.headline}</p>
+    </div>
+    <div class="footer-meta">
+      <a href={profile.github} rel="me noreferrer">GitHub ↗</a>
+      <a href="/#contact">Contact</a>
+      <span>© {year}</span>
+    </div>
+  </div>
+</footer>
+
+<style>
+  footer { padding: 3rem 0; border-top: 1px solid var(--line); }
+  .footer-inner, .footer-meta { display: flex; align-items: center; justify-content: space-between; gap: 2rem; }
+  .footer-name { font-family: var(--display); font-size: 1.3rem; text-decoration: none; }
+  p { margin: .35rem 0 0; color: var(--muted); font-size: .8rem; }
+  .footer-meta { color: var(--muted); font-size: .85rem; }
+  .footer-meta a { text-underline-offset: .25em; }
+  @media (max-width: 700px) { .footer-inner { align-items: flex-start; flex-direction: column; } .footer-meta { flex-wrap: wrap; } }
+</style>

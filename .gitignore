@@ -1,0 +1,11 @@
+node_modules/
+dist/
+.astro/
+.DS_Store
+.env
+.env.*
+!.env.example
+*.log
+
+# Local project context; not part of the public website source.
+PROFILE_CONTEXT.md

@@ -1,0 +1,24 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { profile } from "../content/profile";
+import { skillGroups } from "../content/skills";
+---
+<BaseLayout title={`CV — ${profile.name}`} description={`Professional profile and capabilities of ${profile.name}.`}>
+  <header class="page-hero"><div class="container"><p class="eyebrow">Curriculum vitae</p><h1>Research depth. Engineering practice.</h1><p class="lede">A concise, verified professional summary. A downloadable PDF will be added when the final CV document is supplied.</p></div></header>
+  <section class="section"><div class="container cv-grid"><aside><p class="label">Current position</p></aside><div><h2>{profile.role}</h2><p class="lede">Doctoral research in Computer Science at RWTH Aachen University, supervised by Prof. Dr. Uwe Naumann.</p><p>Dissertation: <cite>{profile.dissertation}</cite>. The work focuses on automatic differentiation, interval methods, sensitivity analysis, and structured neural-network pruning.</p></div></div></section>
+  <section class="section"><div class="container cv-grid"><aside><p class="label">Technical profile</p></aside><div class="skill-list">{skillGroups.map((group) => <article><h3>{group.title}</h3><p>{group.skills.join(" · ")}</p></article>)}</div></div></section>
+  <section class="section"><div class="container cv-grid"><aside><p class="label">Links</p></aside><div><h2>Public profile</h2><p>Verified publication, education, employment chronology, and downloadable CV details will be added when source information is available.</p><a class="button" href={profile.github} rel="me noreferrer">GitHub profile ↗</a></div></div></section>
+</BaseLayout>
+<style>
+  .page-hero { padding: clamp(5rem, 11vw, 10rem) 0; }
+  h1 { max-width: 1000px; font-size: clamp(3.2rem, 7vw, 7rem); }
+  .page-hero .lede { max-width: 720px; }
+  .cv-grid { display: grid; grid-template-columns: minmax(180px, .4fr) 1.6fr; gap: clamp(2rem, 8vw, 8rem); }
+  .cv-grid > div { max-width: 760px; }
+  .label { color: var(--accent); font: 700 .75rem var(--mono); letter-spacing: .1em; text-transform: uppercase; }
+  .cv-grid p:not(.label) { color: var(--muted); }
+  .skill-list article { padding: 1.4rem 0; border-top: 1px solid var(--line); }
+  .skill-list h3 { margin: 0 0 .5rem; font-size: 1.4rem; }
+  .skill-list p { margin: 0; }
+  @media (max-width: 700px) { .cv-grid { grid-template-columns: 1fr; gap: 1rem; } }
+</style>
