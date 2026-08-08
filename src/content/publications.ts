@@ -15,7 +15,7 @@ export const featuredPublications: readonly Publication[] = [
     year: 2020,
     venue: "Computational Science — ICCS 2020",
     details: "LNCS 12139, pp. 365–378 · Springer International Publishing",
-    tags: ["IASA", "Automatic differentiation", "Neural networks"],
+    tags: ["IASA", "Algorithmic differentiation", "Neural networks"],
     links: [
       { label: "DOI", href: "https://doi.org/10.1007/978-3-030-50420-5_27" },
       { label: "RWTH record", href: "https://publications.rwth-aachen.de/record/816737" },

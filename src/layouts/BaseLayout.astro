@@ -2,20 +2,20 @@
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import { profile } from "../content/profile";
-import { communitySocials, primarySocials, secondarySocials } from "../content/social";
+import { primarySocials, secondarySocials } from "../content/social";
 import "../styles/global.css";
-interface Props { title?: string; description?: string; image?: string; }
-const { title = `${profile.name} — Scientific Computing & Machine Learning`, description = profile.intro, image = profile.portrait } = Astro.props;
+interface Props { title?: string; description?: string; image?: string; noindex?: boolean; }
+const { title = `${profile.name} — Scientific Computing & Machine Learning`, description = profile.intro, image = profile.portrait, noindex = false } = Astro.props;
 const canonical = new URL(Astro.url.pathname, profile.site);
-const socialUrls = [...primarySocials, ...secondarySocials, ...communitySocials].map((item)=>item.href);
-const personData = {"@context":"https://schema.org","@type":"Person",name:profile.name,url:profile.site,image:new URL(profile.portrait,profile.site).href,email:`mailto:${profile.email}`,sameAs:socialUrls,affiliation:{"@type":"CollegeOrUniversity",name:profile.institution},alumniOf:[{"@type":"CollegeOrUniversity",name:"University of Engineering and Technology, Lahore"},{"@type":"CollegeOrUniversity",name:"The Islamia University of Bahawalpur"}],knowsAbout:["Scientific computing","Automatic differentiation","Machine learning","Interval arithmetic","Neural-network pruning","High-performance computing","C++","Python","PyTorch","TensorFlow"]};
-const websiteData = {"@context":"https://schema.org","@type":"WebSite",name:profile.name,url:profile.site,description};
+const isHome = Astro.url.pathname === "/";
+const socialUrls = [...primarySocials, ...secondarySocials].map((item)=>item.href);
+const structuredData = {"@context":"https://schema.org","@graph":[{"@type":"Person","@id":`${profile.site}/#person`,name:profile.name,alternateName:"Sher Afghan",url:profile.site,image:{"@type":"ImageObject",url:new URL(profile.portrait,profile.site).href,width:1122,height:1402},email:`mailto:${profile.email}`,sameAs:socialUrls,affiliation:{"@type":"CollegeOrUniversity",name:profile.institution},alumniOf:[{"@type":"CollegeOrUniversity",name:"University of Engineering and Technology, Lahore"},{"@type":"CollegeOrUniversity",name:"The Islamia University of Bahawalpur"}],knowsAbout:["Algorithmic Differentiation","Automatic Differentiation","Adjoint Differentiation","Scientific Computing","Interval Arithmetic","Interval Adjoint Significance Analysis","Neural Network Pruning","Machine Learning","High-Performance Computing"]},{"@type":"WebSite","@id":`${profile.site}/#website`,name:profile.name,url:profile.site,description,publisher:{"@id":`${profile.site}/#person`}}]};
 ---
 <!doctype html><html lang="en"><head>
-  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width"/><meta name="generator" content={Astro.generator}/><meta name="description" content={description}/><meta name="theme-color" content="#102f38"/>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width"/><meta name="generator" content={Astro.generator}/><meta name="description" content={description}/><meta name="robots" content={noindex ? "noindex, nofollow" : "index, follow"}/><meta name="theme-color" content="#102f38"/>
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"/><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"/><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/><link rel="canonical" href={canonical}/>
-  <meta property="og:type" content="website"/><meta property="og:title" content={title}/><meta property="og:description" content={description}/><meta property="og:url" content={canonical}/><meta property="og:site_name" content={profile.name}/><meta property="og:image" content={new URL(image,profile.site)}/><meta property="og:image:alt" content={profile.name}/>
-  <meta name="twitter:card" content="summary_large_image"/><meta name="twitter:title" content={title}/><meta name="twitter:description" content={description}/><meta name="twitter:image" content={new URL(image,profile.site)}/>
+  <meta property="og:type" content="website"/><meta property="og:title" content={title}/><meta property="og:description" content={description}/><meta property="og:url" content={canonical}/><meta property="og:site_name" content={profile.name}/><meta property="og:image" content={new URL(image,profile.site)}/><meta property="og:image:width" content="1122"/><meta property="og:image:height" content="1402"/><meta property="og:image:alt" content={profile.name}/>
+  <meta name="twitter:card" content="summary_large_image"/><meta name="twitter:title" content={title}/><meta name="twitter:description" content={description}/><meta name="twitter:image" content={new URL(image,profile.site)}/><meta name="twitter:image:alt" content={profile.name}/>
   <script is:inline>document.documentElement.dataset.theme=localStorage.getItem('theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');</script>
-  <script is:inline type="application/ld+json" set:html={JSON.stringify(personData)}/><script is:inline type="application/ld+json" set:html={JSON.stringify(websiteData)}/><title>{title}</title>
+  {isHome && <script is:inline type="application/ld+json" set:html={JSON.stringify(structuredData)}/>}<title>{title}</title>
 </head><body><a class="skip-link" href="#main">Skip to content</a><Header/><main id="main"><slot/></main><Footer/></body></html>

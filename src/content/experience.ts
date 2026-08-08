@@ -14,7 +14,7 @@ export const experiences: readonly Experience[] = [
     role: "Doctoral Research",
     organization: "RWTH Aachen University / STCE",
     location: "Aachen, Germany",
-    summary: "Doctoral work in scientific computing on interval adjoints, automatic differentiation, sensitivity analysis, and efficient neural networks. Thesis submitted; degree not yet awarded.",
+    summary: "Doctoral work in scientific computing on interval adjoints, algorithmic differentiation, sensitivity analysis, and efficient neural networks. Thesis submitted; degree not yet awarded.",
     evidence: ["C++ and Python research implementations", "PyTorch pruning experiments", "GPU/HPC and Slurm workflows", "Reproducible experiment pipelines"],
     kind: "research",
   },
