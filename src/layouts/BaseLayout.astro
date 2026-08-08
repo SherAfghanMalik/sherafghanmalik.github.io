@@ -2,13 +2,13 @@
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import { profile } from "../content/profile";
-import { primarySocials, secondarySocials } from "../content/social";
+import { communitySocials, primarySocials, secondarySocials } from "../content/social";
 import "../styles/global.css";
 interface Props { title?: string; description?: string; image?: string; }
 const { title = `${profile.name} — Scientific Computing & Machine Learning`, description = profile.intro, image = profile.portrait } = Astro.props;
 const canonical = new URL(Astro.url.pathname, profile.site);
-const socialUrls = [...primarySocials, ...secondarySocials].map((item)=>item.href);
-const personData = {"@context":"https://schema.org","@type":"Person",name:profile.name,url:profile.site,image:new URL(profile.portrait,profile.site).href,email:`mailto:${profile.email}`,sameAs:socialUrls,affiliation:{"@type":"CollegeOrUniversity",name:profile.institution},alumniOf:[{"@type":"CollegeOrUniversity",name:"University of Engineering and Technology, Lahore"},{"@type":"CollegeOrUniversity",name:"The Islamia University of Bahawalpur"}],knowsAbout:["Scientific computing","Automatic differentiation","Machine learning","Interval arithmetic","Neural-network pruning","High-performance computing","C++","Python","PyTorch"]};
+const socialUrls = [...primarySocials, ...secondarySocials, ...communitySocials].map((item)=>item.href);
+const personData = {"@context":"https://schema.org","@type":"Person",name:profile.name,url:profile.site,image:new URL(profile.portrait,profile.site).href,email:`mailto:${profile.email}`,sameAs:socialUrls,affiliation:{"@type":"CollegeOrUniversity",name:profile.institution},alumniOf:[{"@type":"CollegeOrUniversity",name:"University of Engineering and Technology, Lahore"},{"@type":"CollegeOrUniversity",name:"The Islamia University of Bahawalpur"}],knowsAbout:["Scientific computing","Automatic differentiation","Machine learning","Interval arithmetic","Neural-network pruning","High-performance computing","C++","Python","PyTorch","TensorFlow"]};
 const websiteData = {"@context":"https://schema.org","@type":"WebSite",name:profile.name,url:profile.site,description};
 ---
 <!doctype html><html lang="en"><head>
