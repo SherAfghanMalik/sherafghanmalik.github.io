@@ -5,10 +5,3 @@ export const skillGroups = [
   { title: "HPC & engineering", skills: ["Linux · Windows", "Slurm · HPC clusters", "GPU / multi-GPU computing", "Job arrays · Batch workflows", "Experiment automation", "Git / GitHub"] },
   { title: "Model & research tooling", skills: ["ONNX", "tf2onnx / onnx-sim", "Reproducibility pipelines", "Experiment logging", "LaTeX", "Scientific debugging"] },
 ] as const;
-
-export const engineeringCapabilities = [
-  { title: "Research algorithms", text: "Translate mathematical methods into testable C++ and Python implementations." },
-  { title: "ML experimentation", text: "Build PyTorch and TensorFlow/Keras studies for pruning, gradient matching, and derivative-based analysis." },
-  { title: "HPC execution", text: "Run repeatable GPU experiments with Linux, Slurm, job arrays, batch workflows, and HPC clusters." },
-  { title: "Scientific tooling", text: "Debug numerical code, automate experiments, exchange models through ONNX, and preserve reproducibility." },
-] as const;
