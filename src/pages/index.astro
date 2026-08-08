@@ -47,7 +47,23 @@ import { experienceSummary } from "../content/experience";
   @media(max-width:680px){.hero-grid{grid-template-columns:minmax(0,1fr);gap:2rem}.hero-copy{width:100%;max-width:calc(100vw - 1.5rem);min-width:0;overflow:hidden}.hero-copy h1{font-size:clamp(3.2rem,16vw,4.5rem);overflow-wrap:anywhere}.hero-copy p{max-width:100%;overflow-wrap:anywhere}.specializations{margin-bottom:1.2rem}.hero-actions{display:grid;grid-template-columns:minmax(0,1fr);width:100%}.hero-actions .button,.hero-actions .plain-action{width:100%;max-width:100%;text-align:center}.social-row{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}.portrait-wrap{width:100%;max-width:430px;margin-inline:auto}.portrait-frame img{width:100%;height:auto}.facts,.capability-grid,.experience-grid{grid-template-columns:1fr}.toolkit-head{grid-template-columns:1fr;gap:.75rem}.toolkit-grid{grid-template-columns:1fr}.toolkit-grid article,.toolkit-grid article:nth-child(2n),.toolkit-grid article:nth-child(3n){border-right:0;border-bottom:1px solid var(--line)}.toolkit-grid article:last-child{border-bottom:0}.capability-grid article,.experience-grid article{min-height:auto}}
 </style>
 <style>
-  .toolkit { border-bottom: 0; }
-  .toolkit-grid article:nth-last-child(-n + 2) { border-bottom: 1px solid var(--line); }
-  .toolkit-grid article:last-child { border-right: 0; }
+  .split { align-items: start; }
+  .split > .prose { padding-top: 0; }
+  .section-intro { column-gap: 4rem; row-gap: 1rem; align-items: start; }
+  .section-intro > div { display: contents; }
+  .section-intro .eyebrow { grid-column: 1 / -1; margin-bottom: 0; }
+  .section-intro h2 { grid-column: 1; }
+  .section-intro > p { grid-column: 2; align-self: start; margin-top: .3rem; }
+  .toolkit { border-bottom: 0 !important; }
+  .toolkit-head { grid-template-columns: 1fr; gap: 0; align-items: start; border-bottom: 0 !important; }
+  .toolkit-head .eyebrow { margin-bottom: 4rem; }
+  .toolkit-grid > article:nth-child(n) { border: 0 !important; }
+  .toolkit-grid { margin-top: 2rem; }
+  @media (max-width: 950px) {
+    .toolkit-head .eyebrow { margin-bottom: 1.25rem; }
+    .toolkit-grid { margin-top: 2rem; }
+    .section-intro .eyebrow,
+    .section-intro h2,
+    .section-intro > p { grid-column: 1; }
+  }
 </style>

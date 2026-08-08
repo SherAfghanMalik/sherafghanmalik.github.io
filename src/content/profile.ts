@@ -23,6 +23,12 @@ export const quickFacts = [
   { label: "HPC & computing", value: "Linux · Windows · Slurm · GPU/HPC" },
 ] as const;
 
+export const languages = [
+  { language: "Urdu", proficiency: "Native" },
+  { language: "English", proficiency: "Advanced" },
+  { language: "German", proficiency: "Elementary proficiency (A2)" },
+] as const;
+
 export const navigation = [
   { label: "About", href: "/#about" },
   { label: "Research", href: "/research/" },
