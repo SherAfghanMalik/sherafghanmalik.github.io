@@ -2,54 +2,20 @@
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import { profile } from "../content/profile";
+import { primarySocials, secondarySocials } from "../content/social";
 import "../styles/global.css";
-
-interface Props {
-  title?: string;
-  description?: string;
-}
-const {
-  title = `${profile.name} — Scientific Computing & Machine Learning`,
-  description = profile.intro,
-} = Astro.props;
+interface Props { title?: string; description?: string; image?: string; }
+const { title = `${profile.name} — Scientific Computing & Machine Learning`, description = profile.intro, image = profile.portrait } = Astro.props;
 const canonical = new URL(Astro.url.pathname, profile.site);
-const structuredData = {
-  "@context": "https://schema.org",
-  "@type": "Person",
-  name: profile.name,
-  url: profile.site,
-  sameAs: [profile.github],
-  affiliation: { "@type": "CollegeOrUniversity", name: "RWTH Aachen University" },
-  knowsAbout: ["Scientific computing", "Automatic differentiation", "Machine learning", "Interval arithmetic", "High-performance computing"],
-};
+const socialUrls = [...primarySocials, ...secondarySocials].map((item)=>item.href);
+const personData = {"@context":"https://schema.org","@type":"Person",name:profile.name,url:profile.site,image:new URL(profile.portrait,profile.site).href,email:`mailto:${profile.email}`,sameAs:socialUrls,affiliation:{"@type":"CollegeOrUniversity",name:profile.institution},alumniOf:[{"@type":"CollegeOrUniversity",name:"University of Engineering and Technology, Lahore"},{"@type":"CollegeOrUniversity",name:"The Islamia University of Bahawalpur"}],knowsAbout:["Scientific computing","Automatic differentiation","Machine learning","Interval arithmetic","Neural-network pruning","High-performance computing","C++","Python","PyTorch"]};
+const websiteData = {"@context":"https://schema.org","@type":"WebSite",name:profile.name,url:profile.site,description};
 ---
-
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <meta name="description" content={description} />
-    <meta name="theme-color" content="#102f38" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="canonical" href={canonical} />
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
-    <meta property="og:url" content={canonical} />
-    <meta property="og:site_name" content={profile.name} />
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content={title} />
-    <meta name="twitter:description" content={description} />
-    <script is:inline>document.documentElement.dataset.theme = localStorage.getItem('theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');</script>
-    <script is:inline type="application/ld+json" set:html={JSON.stringify(structuredData)} />
-    <title>{title}</title>
-  </head>
-  <body>
-    <a class="skip-link" href="#main">Skip to content</a>
-    <Header />
-    <main id="main"><slot /></main>
-    <Footer />
-  </body>
-</html>
+<!doctype html><html lang="en"><head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width"/><meta name="generator" content={Astro.generator}/><meta name="description" content={description}/><meta name="theme-color" content="#102f38"/>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg"/><link rel="canonical" href={canonical}/>
+  <meta property="og:type" content="website"/><meta property="og:title" content={title}/><meta property="og:description" content={description}/><meta property="og:url" content={canonical}/><meta property="og:site_name" content={profile.name}/><meta property="og:image" content={new URL(image,profile.site)}/><meta property="og:image:alt" content={profile.name}/>
+  <meta name="twitter:card" content="summary_large_image"/><meta name="twitter:title" content={title}/><meta name="twitter:description" content={description}/><meta name="twitter:image" content={new URL(image,profile.site)}/>
+  <script is:inline>document.documentElement.dataset.theme=localStorage.getItem('theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');</script>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(personData)}/><script is:inline type="application/ld+json" set:html={JSON.stringify(websiteData)}/><title>{title}</title>
+</head><body><a class="skip-link" href="#main">Skip to content</a><Header/><main id="main"><slot/></main><Footer/></body></html>

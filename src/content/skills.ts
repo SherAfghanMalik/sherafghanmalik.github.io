@@ -1,18 +1,14 @@
 export const skillGroups = [
-  {
-    title: "Programming",
-    skills: ["C++", "Python", "Bash", "LaTeX"],
-  },
-  {
-    title: "Machine learning",
-    skills: ["PyTorch", "TensorFlow / Keras", "CNNs", "VGG", "ResNet", "Model pruning"],
-  },
-  {
-    title: "Numerical computing",
-    skills: ["dco/c++", "Automatic differentiation", "Interval arithmetic", "Boost interval", "Higher-order derivatives"],
-  },
-  {
-    title: "HPC & tooling",
-    skills: ["Linux", "Slurm", "Multi-GPU workflows", "ONNX", "Git", "Experiment automation"],
-  },
+  { title: "Programming", skills: ["C++", "Python", "SQL", "PL/SQL", "Bash", "LaTeX", "HTML/CSS"] },
+  { title: "ML & scientific computing", skills: ["PyTorch", "TensorFlow / Keras", "Automatic differentiation", "Neural-network pruning", "Scientific ML", "Numerical methods", "Sensitivity analysis"] },
+  { title: "AD & interval methods", skills: ["dco/c++", "Tangent / forward mode", "Adjoint / reverse mode", "Higher-order derivatives", "Interval arithmetic", "Boost interval"] },
+  { title: "HPC & engineering", skills: ["Linux", "Slurm", "GPU computing", "Multi-GPU experiments", "Job arrays", "Experiment automation", "Git / GitHub"] },
+  { title: "Model tooling", skills: ["ONNX", "tf2onnx", "onnx-sim", "Reproducibility pipelines", "Experiment logging", "Scientific debugging"] },
+] as const;
+
+export const engineeringCapabilities = [
+  { title: "Research algorithms", text: "Translate mathematical methods into testable C++ and Python implementations." },
+  { title: "ML experimentation", text: "Build PyTorch studies for pruning, gradient matching, and higher-order differentiation." },
+  { title: "HPC execution", text: "Run repeatable GPU experiments with Linux, Slurm, job arrays, and containerized environments." },
+  { title: "Scientific tooling", text: "Debug numerical code, automate experiments, exchange models through ONNX, and preserve reproducibility." },
 ] as const;

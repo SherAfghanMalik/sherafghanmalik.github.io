@@ -1,69 +1,21 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import ResearchCard from "../components/ResearchCard.astro";
+import PublicationEntry from "../components/PublicationEntry.astro";
 import { profile } from "../content/profile";
-import { researchAreas, researchThemes } from "../content/research";
+import { researchAreas,researchProcess } from "../content/research";
+import { featuredPublications } from "../content/publications";
+import { skillGroups } from "../content/skills";
 ---
-
-<BaseLayout title={`Research — ${profile.name}`} description="Research in interval adjoints, automatic differentiation, sensitivity analysis, and structured neural-network pruning.">
-  <header class="page-hero">
-    <div class="container">
-      <p class="eyebrow">Research</p>
-      <h1>Understanding significance through derivatives and intervals.</h1>
-      <p class="lede">My doctoral work develops methods for analyzing which parts of a neural network matter, combining automatic differentiation with interval arithmetic and applying the resulting information to structured pruning.</p>
-    </div>
-  </header>
-  <section class="section">
-    <div class="container intro-grid">
-      <div><p class="eyebrow">Dissertation</p><h2>{profile.dissertation}</h2></div>
-      <div>
-        <p class="lede">Interval Adjoint Significance Analysis (IASA) propagates interval-valued tangent or adjoint information through a model to estimate or bound the significance of neurons and channels.</p>
-        <p>The broader goal is to make sensitivity-based decisions more robust and useful for model compression. The research spans multilayer perceptrons and convolutional networks, including VGG and ResNet architectures.</p>
-        <p class="note">The dissertation is in the formal RWTH submission and examination process. Exact experimental results will be published here only after verification against the final thesis.</p>
-      </div>
-    </div>
-  </section>
-  <section class="section process-section">
-    <div class="container">
-      <p class="eyebrow">Concept</p>
-      <h2>From a trained model to an efficient one.</h2>
-      <ol class="process">
-        <li><span>01</span><strong>Propagate</strong><p>Compute interval tangent or adjoint information through the network.</p></li>
-        <li><span>02</span><strong>Estimate</strong><p>Use the derivative information to assess component significance.</p></li>
-        <li><span>03</span><strong>Prune</strong><p>Remove less significant neurons or channels in a structured way.</p></li>
-        <li><span>04</span><strong>Refine</strong><p>Recover behavior with bias compensation and gradient-aware fine-tuning.</p></li>
-      </ol>
-    </div>
-  </section>
-  <section class="section">
-    <div class="container">
-      <p class="eyebrow">Focus areas</p>
-      <div class="cards">{researchAreas.map((area) => <ResearchCard {...area} />)}</div>
-    </div>
-  </section>
-  <section class="section themes-section">
-    <div class="container themes-grid">
-      <div><p class="eyebrow">Research themes</p><h2>Where the work connects.</h2></div>
-      <ul>{researchThemes.map((theme) => <li>{theme}</li>)}</ul>
-    </div>
-  </section>
+<BaseLayout title={`Research — ${profile.name}`} description="Interval Adjoint Significance Analysis, automatic differentiation, structured neural-network pruning, and scientific-computing research by Sher Afghan Malik.">
+  <header class="page-hero"><div class="container"><p class="eyebrow">Research</p><h1>Derivative information for understanding and compressing neural networks.</h1><p class="lede">My doctoral research combines automatic differentiation, interval arithmetic, and significance analysis to identify neural-network components that can be removed in a structured, explainable way.</p><div class="hero-links"><a class="button" href="#iasa">Understand IASA →</a><a class="button secondary" href="/publications/">Research publications</a></div></div></header>
+  <section class="section" id="iasa"><div class="container dual"><div><p class="eyebrow">IASA · accessible view</p><h2>Which parts of a model can meaningfully affect its output?</h2></div><div><p class="lede">Interval Adjoint Significance Analysis estimates how important neurons or channels can be across a range of inputs—not only at one sampled point.</p><p>For engineering audiences: IASA supplies a principled ranking signal for structured pruning. It connects derivative-based sensitivity with interval bounds, then uses that signal to remove whole neurons or channels and evaluate the resulting efficient model.</p></div></div></section>
+  <section class="section tinted"><div class="container dual"><div><p class="eyebrow">IASA · technical view</p><h2>Interval tangents and adjoints as bounded significance signals.</h2></div><div><p class="lede">The method combines interval evaluation with forward/tangent or reverse/adjoint automatic differentiation to propagate bounded derivative information through a neural network.</p><p>These interval sensitivities support uncertainty-aware significance estimates for MLP neurons and CNN channels. The doctoral work studies structured pruning on architectures including VGG-16 and ResNet-56, with bias augmentation and Sobolev-style gradient matching as post-pruning refinement strategies.</p><dl><div><dt>Derivative modes</dt><dd>Tangent / forward and adjoint / reverse</dd></div><div><dt>Structures</dt><dd>MLP neurons and CNN channels</dd></div><div><dt>Model families</dt><dd>VGG-16, ResNet-56, regression and classification networks</dd></div></dl></div></div></section>
+  <section class="section"><div class="container"><p class="eyebrow">Research workflow</p><h2>From input ranges to a smaller model.</h2><ol class="process">{researchProcess.map((item,index)=><li><span>{String(index+1).padStart(2,"0")}</span><strong>{item.step}</strong><p>{item.detail}</p></li>)}</ol></div></section>
+  <section class="section tinted"><div class="container"><div class="section-intro"><div><p class="eyebrow">Focus areas</p><h2>A connected research programme.</h2></div><p>Automatic differentiation is the computational foundation; interval analysis and structured pruning turn it into a model-efficiency method.</p></div><div class="areas">{researchAreas.map((area)=><ResearchCard {...area}/>)}</div></div></section>
+  <section class="section"><div class="container dual"><div><p class="eyebrow">Research engineering</p><h2>Methods backed by implementation and infrastructure.</h2></div><div><p class="lede">The research requires more than model training: numerical C++ development, higher-order differentiation, GPU execution, scheduling, conversion, logging, and reproducibility.</p>{skillGroups.slice(1).map((group)=><div class="tool-row"><strong>{group.title}</strong><p>{group.skills.join(" · ")}</p></div>)}</div></div></section>
+  <section class="section tinted"><div class="container"><div class="section-intro"><div><p class="eyebrow">Core publications</p><h2>Research outputs.</h2></div><p>The two works most directly representing IASA and gradient-aware pruning.</p></div>{featuredPublications.map((publication,index)=><PublicationEntry publication={publication} featured index={index+1}/>)}</div></section>
 </BaseLayout>
-
 <style>
-  .page-hero { padding: clamp(5rem, 11vw, 10rem) 0; }
-  .page-hero h1 { max-width: 1050px; font-size: clamp(3.2rem, 7vw, 7rem); }
-  .page-hero .lede { max-width: 760px; }
-  .intro-grid, .themes-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(3rem, 9vw, 9rem); }
-  .intro-grid p:not(.eyebrow) { color: var(--muted); }
-  .note { margin-top: 2rem; padding: 1rem 1.25rem; border-left: 2px solid var(--accent); background: var(--surface); font-size: .88rem; }
-  .process-section, .themes-section { background: var(--surface); }
-  .process { display: grid; grid-template-columns: repeat(4, 1fr); margin: 4rem 0 0; padding: 0; list-style: none; border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
-  .process li { min-height: 280px; padding: 1.5rem; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-  .process span { display: block; color: var(--accent); font: 700 .75rem var(--mono); }
-  .process strong { display: block; margin: 4rem 0 1rem; font-family: var(--display); font-size: 1.6rem; font-weight: 500; }
-  .process p { color: var(--muted); font-size: .92rem; }
-  .themes-grid ul { display: grid; grid-template-columns: 1fr 1fr; margin: 0; padding: 0; list-style: none; }
-  .themes-grid li { padding: 1.15rem 0; border-top: 1px solid var(--line); }
-  @media (max-width: 850px) { .intro-grid, .themes-grid { grid-template-columns: 1fr; } .process { grid-template-columns: 1fr 1fr; } }
-  @media (max-width: 520px) { .process, .themes-grid ul { grid-template-columns: 1fr; } .process li { min-height: auto; } .process strong { margin-top: 2rem; } }
+  .page-hero{padding:clamp(5rem,10vw,9rem) 0}.page-hero h1{max-width:1050px;font-size:clamp(3rem,6.5vw,6.3rem)}.page-hero .lede{max-width:800px}.hero-links{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:2rem}.dual{display:grid;grid-template-columns:1fr 1fr;gap:clamp(3rem,9vw,9rem)}.dual p:not(.eyebrow){color:var(--muted)}.tinted{background:var(--surface)}dl{margin:2rem 0 0}dl div,.tool-row{padding:1rem 0;border-top:1px solid var(--line)}dt,.tool-row strong{color:var(--accent);font:700 .68rem var(--mono);text-transform:uppercase}dd{margin:.3rem 0 0}.process{display:grid;grid-template-columns:repeat(6,1fr);margin:3rem 0 0;padding:0;border-top:1px solid var(--line);border-left:1px solid var(--line);list-style:none}.process li{min-height:260px;padding:1.2rem;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}.process span{color:var(--accent);font:700 .68rem var(--mono)}.process strong{display:block;margin:3rem 0 .8rem;font-family:var(--display);font-size:1.25rem;line-height:1.15}.process p,.tool-row p{color:var(--muted);font-size:.82rem}.section-intro{display:grid;grid-template-columns:1.2fr .8fr;gap:4rem;align-items:end;margin-bottom:3rem}.section-intro>p{color:var(--muted)}.areas{display:grid;grid-template-columns:1fr 1fr}.areas :global(article){padding-right:2rem}@media(max-width:950px){.process{grid-template-columns:repeat(3,1fr)}}@media(max-width:750px){.dual,.section-intro,.areas{grid-template-columns:1fr}.process{grid-template-columns:1fr 1fr}.process li{min-height:220px}}@media(max-width:480px){.process{grid-template-columns:1fr}.process li{min-height:auto}.process strong{margin-top:1.5rem}}
 </style>
