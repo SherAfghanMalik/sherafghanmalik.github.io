@@ -13,7 +13,7 @@ export const profile = {
   institution: "RWTH Aachen University",
   site: "https://sherafghanmalik.com",
   email: "SherAfghanMalik@live.com",
-  portrait: "/images/sher-afghan-malik.webp",
+  portrait: "/images/WhatsApp Image 2026-08-08 at 04.33.19-Photoroom.png",
 } as const;
 
 export const quickFacts = [

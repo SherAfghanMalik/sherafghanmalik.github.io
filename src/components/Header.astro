@@ -1,12 +1,11 @@
 ---
 import { navigation, profile } from "../content/profile";
 import { primarySocials } from "../content/social";
-import SamMark from "./SamMark.astro";
 const github = primarySocials.find((item) => item.label === "GitHub")!;
 ---
 <header class="site-header">
   <div class="container header-inner">
-    <a class="brand" href="/" aria-label={`${profile.name}, home`}><SamMark class="brand-mark"/><strong>{profile.name}</strong></a>
+    <a class="brand" href="/" aria-label={`${profile.name}, home`}><img class="brand-logo" src="/images/ff5b3b9a-189b-49d5-b454-25c2ef055441.png" alt="" width="1536" height="1024"/><strong>{profile.name}</strong></a>
     <nav id="site-nav" aria-label="Primary navigation">
       {navigation.map((item) => <a href={item.href}>{item.label}</a>)}
       <a class="nav-github" href={github.href} rel="me noreferrer">GitHub ↗</a>
@@ -43,6 +42,6 @@ const github = primarySocials.find((item) => item.label === "GitHub")!;
 </script>
 <style>
   .site-header{position:sticky;z-index:30;top:0;border-bottom:1px solid var(--line);background:var(--header);backdrop-filter:blur(18px)}
-  .header-inner{display:flex;align-items:center;justify-content:space-between;height:4.75rem;gap:1.5rem}.brand{display:flex;align-items:center;gap:.75rem;text-decoration:none;flex-shrink:0}.brand :global(.brand-mark){width:2.45rem;height:2.45rem}.brand strong{font-size:.9rem}nav{display:flex;align-items:center;gap:clamp(.75rem,1.7vw,1.55rem)}nav a,.desktop-github{color:var(--muted);font-size:.78rem;font-weight:700;text-decoration:none;white-space:nowrap}nav a:hover,.desktop-github:hover{color:var(--accent)}.nav-github{display:none}.header-actions{display:flex;align-items:center;gap:.7rem}.theme-toggle,.menu-toggle{display:grid;place-items:center;width:2.5rem;height:2.5rem;border:1px solid var(--line);background:transparent;color:var(--ink);cursor:pointer}.theme-toggle:hover,.menu-toggle:hover{border-color:var(--accent);color:var(--accent)}.theme-toggle svg{width:1.1rem;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}[data-theme="dark"] .sun,:root:not([data-theme="dark"]) .moon{display:none}.menu-toggle{display:none;gap:5px;align-content:center}.menu-toggle span{width:1rem;height:1px;background:currentColor}
+  .header-inner{display:flex;align-items:center;justify-content:space-between;height:4.75rem;gap:1.5rem}.brand{display:flex;align-items:center;gap:.75rem;text-decoration:none;flex-shrink:0}.brand-logo{display:block;width:4.5rem;height:auto;object-fit:contain}.brand strong{font-size:.9rem}nav{display:flex;align-items:center;gap:clamp(.75rem,1.7vw,1.55rem)}nav a,.desktop-github{color:var(--muted);font-size:.78rem;font-weight:700;text-decoration:none;white-space:nowrap}nav a:hover,.desktop-github:hover{color:var(--accent)}.nav-github{display:none}.header-actions{display:flex;align-items:center;gap:.7rem}.theme-toggle,.menu-toggle{display:grid;place-items:center;width:2.5rem;height:2.5rem;border:1px solid var(--line);background:transparent;color:var(--ink);cursor:pointer}.theme-toggle:hover,.menu-toggle:hover{border-color:var(--accent);color:var(--accent)}.theme-toggle svg{width:1.1rem;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}[data-theme="dark"] .sun,:root:not([data-theme="dark"]) .moon{display:none}.menu-toggle{display:none;gap:5px;align-content:center}.menu-toggle span{width:1rem;height:1px;background:currentColor}
   @media(max-width:1020px){.brand strong,.desktop-github{display:none}nav{position:fixed;inset:4.75rem 0 auto;display:none;flex-direction:column;align-items:stretch;gap:0;padding:1rem 1.5rem 2rem;border-bottom:1px solid var(--line);background:var(--paper)}nav.open{display:flex}nav a{padding:.8rem 0;border-bottom:1px solid var(--line);font-family:var(--display);font-size:1.25rem}.nav-github{display:block}.menu-toggle{display:grid}}
 </style>
