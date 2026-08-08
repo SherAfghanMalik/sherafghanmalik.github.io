@@ -12,7 +12,7 @@ export const profile = {
   supervisor: "Prof. Dr. Uwe Naumann",
   institution: "RWTH Aachen University",
   site: "https://sherafghanmalik.com",
-  email: "SherAfghanMalik@live.com",
+  email: "sher@sherafghanmalik.com",
   portrait: "/images/WhatsApp Image 2026-08-08 at 04.33.19-Photoroom.png",
 } as const;
 
