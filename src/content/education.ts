@@ -1,9 +1,9 @@
 export const education = [
   {
-    period: "2018 — doctoral examination process",
+    period: "Oct 2018 — Present",
     qualification: "Doctoral research in Computer Science / Scientific Computing",
     institution: "RWTH Aachen University",
-    detail: "Degree pursued: Dr. rer. nat. · Thesis submitted · Primary supervisor: Prof. Dr. Uwe Naumann",
+    detail: "Thesis submitted · Doctoral examination ongoing · Degree not yet awarded · Primary supervisor: Prof. Dr. Uwe Naumann",
   },
   {
     period: "2013 — 2015",

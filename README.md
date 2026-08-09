@@ -2,7 +2,7 @@
 
 Static professional portfolio for [Sher Afghan Malik](https://sherafghanmalik.com), built with Astro and TypeScript.
 
-The site includes research, publications, experience and education, a verified HTML CV, and centralized professional profile data. It intentionally does not publish an outdated PDF CV.
+The site includes research, publications, an editorial experience and education page, English and German technical CV downloads, and centralized professional profile data.
 
 ## Local development
 

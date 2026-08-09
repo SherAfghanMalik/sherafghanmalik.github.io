@@ -6,20 +6,40 @@ export type Experience = {
   summary: string;
   evidence: readonly string[];
   kind: "research" | "teaching" | "engineering";
+  links?: readonly { label: string; href: string }[];
 };
 
 export const experiences: readonly Experience[] = [
   {
-    period: "2018 — doctoral examination process",
+    period: "Oct 2018 — Present",
     role: "Doctoral Research",
+    organization: "RWTH Aachen University / Software and Tools for Computational Engineering (STCE)",
+    location: "Aachen, Germany",
+    summary: "Research in scientific computing and machine learning centered on Interval Adjoint Significance Analysis (IASA), interval methods, algorithmic and automatic differentiation, and structured neural-network pruning. Thesis submitted; doctoral examination ongoing; degree not yet awarded.",
+    evidence: ["C++ interval-analysis software with dco/c++ and Boost Interval", "Python, PyTorch, and TensorFlow/Keras research workflows", "ONNX-based model exchange", "Reproducible GPU/HPC experiments with Linux and Slurm"],
+    kind: "research",
+    links: [{ label: "Explore the research", href: "/research/" }, { label: "View publications", href: "/publications/" }],
+  },
+  {
+    period: "Jun 2025 — Aug 2025",
+    role: "Technical Assistant",
+    organization: "QCG Computer GmbH",
+    location: "Eschweiler, Germany",
+    summary: "Supported final configuration and technical testing before delivery.",
+    evidence: ["Server-rack configuration", "BBU testing", "Size-O testing", "Final-delivery preparation and testing"],
+    kind: "engineering",
+  },
+  {
+    period: "Sep 2022 — Dec 2023",
+    role: "Research Assistant (HiWi)",
     organization: "RWTH Aachen University / STCE",
     location: "Aachen, Germany",
-    summary: "Doctoral work in scientific computing on interval adjoints, algorithmic differentiation, sensitivity analysis, and efficient neural networks. Thesis submitted; degree not yet awarded.",
-    evidence: ["C++ and Python research implementations", "PyTorch pruning experiments", "GPU/HPC and Slurm workflows", "Reproducible experiment pipelines"],
+    summary: "Developed and tested neural-network research workflows while supporting student research projects.",
+    evidence: ["C++ and dco/c++ workflows", "ONNX export and import in Python", "PyTorch and TensorFlow model validation", "HPC training automation", "Support and supervision of bachelor's and master's research projects"],
     kind: "research",
   },
   {
-    period: "2018",
+    period: "May 2018 — Oct 2018",
     role: "Lecturer",
     organization: "Khwaja Fareed University of Engineering and Information Technology",
     location: "Rahim Yar Khan, Pakistan",

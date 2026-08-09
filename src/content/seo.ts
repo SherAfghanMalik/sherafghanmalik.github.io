@@ -17,7 +17,7 @@ export const seo = {
   },
   cv: {
     title: "CV | Sher Afghan Malik — Scientific Computing & Machine Learning",
-    description: "HTML CV for Sher Afghan Malik covering doctoral research, scientific software, algorithmic differentiation, machine learning, HPC, teaching, and engineering experience.",
+    description: "Download the English or German technical and research CV of Sher Afghan Malik, focused on scientific computing, machine learning, research software, and HPC.",
   },
   notFound: {
     title: "Page Not Found | Sher Afghan Malik",

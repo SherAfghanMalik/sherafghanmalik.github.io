@@ -1,23 +1,31 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { languages, profile } from "../content/profile";
-import { primarySocials } from "../content/social";
-import { experiences } from "../content/experience";
-import { education } from "../content/education";
-import { skillGroups } from "../content/skills";
-import { featuredPublications } from "../content/publications";
 import { seo } from "../content/seo";
+
+const cvOptions = [
+  {
+    language: "English",
+    title: "Technical & Research CV",
+    description: "Scientific computing, machine learning, research software engineering, C++ / Python, algorithmic differentiation, and HPC.",
+    action: "Download CV — English",
+    meta: "PDF · 2 pages",
+    href: "/cv/Sher_Afghan_Malik_Technical_Research_CV_EN.pdf",
+  },
+  {
+    language: "Deutsch",
+    title: "Technischer & Forschungs-Lebenslauf",
+    description: "Scientific Computing, Machine Learning, Forschungssoftwareentwicklung, C++ / Python, algorithmische Differenzierung und HPC.",
+    action: "Lebenslauf herunterladen — Deutsch",
+    meta: "PDF · 2 Seiten",
+    href: "/cv/Sher_Afghan_Malik_Technical_Research_CV_DE.pdf",
+  },
+] as const;
 ---
 <BaseLayout title={seo.cv.title} description={seo.cv.description}>
-  <header class="cv-head"><div class="container"><div><p class="eyebrow">HTML curriculum vitae</p><h1>{profile.name}</h1><p class="headline">{profile.headline}</p><p class="status">{profile.status}</p></div><div class="cv-contact"><a href={`mailto:${profile.email}`}>{profile.email}</a>{primarySocials.map((item)=><a href={item.href} rel="me noreferrer">{item.label} ↗</a>)}</div></div></header>
-  <section class="cv-section"><div class="container cv-grid"><h2>Profile</h2><div><p class="lede">{profile.positioning}</p><p>{profile.biography}</p><a class="text-link" href="/research/">Research methods and programme →</a></div></div></section>
-  <section class="cv-section"><div class="container cv-grid"><h2>Experience</h2><div>{experiences.map((item)=><article class="entry"><span>{item.period}</span><div><h3>{item.role}</h3><h4>{item.organization}</h4><p>{item.summary}</p><p class="evidence">{item.evidence.join(" · ")}</p></div></article>)}</div></div></section>
-  <section class="cv-section"><div class="container cv-grid"><h2>Education</h2><div>{education.map((item)=><article class="entry"><span>{item.period}</span><div><h3>{item.qualification}</h3><h4>{item.institution}</h4><p>{item.detail}</p></div></article>)}</div></div></section>
-  <section class="cv-section"><div class="container cv-grid"><h2>Technical skills</h2><div class="skills">{skillGroups.map((group)=><article><h3>{group.title}</h3><p>{group.skills.join(" · ")}</p></article>)}</div></div></section>
-  <section class="cv-section"><div class="container cv-grid"><h2>Languages</h2><div class="language-list">{languages.map((item)=><p><strong>{item.language}</strong><span>{item.proficiency}</span></p>)}</div></div></section>
-  <section class="cv-section"><div class="container cv-grid"><h2>Selected publications</h2><div>{featuredPublications.map((publication)=><article class="entry publication"><span>{publication.year}</span><div><h3>{publication.title}</h3><p>{publication.authors}</p><p>{publication.venue}</p></div></article>)}<a class="text-link" href="/publications/">Complete publication record →</a></div></div></section>
+  <header class="cv-hero"><div class="container"><p class="eyebrow">Curriculum Vitae</p><h1>CV</h1><p class="lede">Technical and research CV focused on scientific computing, machine learning, algorithmic differentiation, research software engineering, and HPC.</p><p class="profile-line">Computer scientist and doctoral researcher developing C++ and Python software across numerical computing, machine learning, and research engineering.</p><p class="tool-line">C++ · Python · PyTorch · TensorFlow/Keras · dco/c++ · Linux · Slurm · GPU/HPC</p></div></header>
+
+  <section class="section"><div class="container"><div class="download-grid">{cvOptions.map((option)=><article><p class="language">{option.language}</p><h2>{option.title}</h2><p>{option.description}</p><div class="download-footer"><span>{option.meta}</span><a class="button" href={option.href} download>{option.action}</a></div></article>)}</div><div class="experience-link"><p>Professional roles, education, and career context are available in the web profile.</p><a class="text-link" href="/experience/">View detailed experience →</a></div></div></section>
 </BaseLayout>
 <style>
-  .cv-head{padding:clamp(4rem,8vw,7rem) 0;border-bottom:1px solid var(--line)}.cv-head>.container{display:grid;grid-template-columns:1fr auto;gap:3rem;align-items:end}.cv-head h1{margin:.8rem 0;font-size:clamp(3.7rem,7vw,6.5rem)}.headline{font-size:1.2rem;font-weight:650}.status{max-width:700px;color:var(--muted)}.cv-contact{display:flex;flex-direction:column;align-items:flex-end;gap:.45rem}.cv-contact a{color:var(--accent);font-size:.8rem;font-weight:700;text-underline-offset:.25em}.cv-section{padding:3.5rem 0;border-bottom:1px solid var(--line)}.cv-grid{display:grid;grid-template-columns:12rem 1fr;gap:clamp(2rem,7vw,7rem)}.cv-grid>h2{font:700 .72rem var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}.cv-grid>div{max-width:850px}.cv-grid p{color:var(--muted)}.entry{display:grid;grid-template-columns:11rem 1fr;gap:2rem;padding:1.4rem 0;border-top:1px solid var(--line)}.entry>span{color:var(--accent);font:700 .68rem/1.5 var(--mono);text-transform:uppercase}.entry h3{margin:0 0 .3rem;font-size:1.35rem}.entry h4{margin:0 0 .7rem}.entry p{margin:.3rem 0;font-size:.86rem}.evidence{font-size:.75rem!important}.skills{display:grid;grid-template-columns:1fr 1fr}.skills article{padding:1.2rem;border-top:1px solid var(--line)}.skills h3{font-size:1.1rem}.language-list p{display:grid;grid-template-columns:9rem 1fr;gap:1rem;margin:0;padding:.8rem 0;border-top:1px solid var(--line)}.language-list span{color:var(--muted)}.publication h3{font-size:1.2rem}@media(max-width:700px){.cv-head>.container,.cv-grid{grid-template-columns:1fr}.cv-contact{align-items:flex-start}.entry{grid-template-columns:1fr;gap:.5rem}.skills{grid-template-columns:1fr}}@media(max-width:420px){.language-list p{grid-template-columns:1fr;gap:.15rem}}
-  @media print{.site-header,footer{display:none}.cv-section{padding:1.5rem 0}.cv-head{padding:2rem 0}}
+  .cv-hero{padding:clamp(5rem,10vw,9rem) 0;border-bottom:1px solid var(--line)}.cv-hero h1{margin:.8rem 0;font-size:clamp(4rem,8vw,7rem)}.cv-hero .lede{max-width:850px}.profile-line{max-width:760px;color:var(--muted)}.tool-line{max-width:850px;margin-top:1.5rem;color:var(--accent);font:700 .72rem/1.7 var(--mono);letter-spacing:.03em}.download-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(1.25rem,3vw,2.5rem)}.download-grid article{display:flex;min-height:360px;flex-direction:column;padding:clamp(1.5rem,3vw,2.5rem);border:1px solid var(--line)}.language{margin:0 0 2.5rem;color:var(--accent);font:700 .68rem var(--mono);letter-spacing:.1em;text-transform:uppercase}.download-grid h2{font-size:clamp(2rem,3vw,3rem)}.download-grid article>p:not(.language){max-width:560px;color:var(--muted)}.download-footer{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1rem;margin-top:auto;padding-top:2rem}.download-footer span{color:var(--muted);font:700 .68rem var(--mono);text-transform:uppercase}.experience-link{display:flex;align-items:center;justify-content:space-between;gap:2rem;margin-top:clamp(2.5rem,5vw,4rem);padding-top:2rem;border-top:1px solid var(--line)}.experience-link p{margin:0;color:var(--muted)}@media(max-width:760px){.download-grid{grid-template-columns:1fr}.download-grid article{min-height:320px}.experience-link{align-items:flex-start;flex-direction:column;gap:.75rem}}@media(max-width:420px){.download-footer{align-items:flex-start;flex-direction:column}.download-footer .button{width:100%;text-align:center}}
 </style>

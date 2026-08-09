@@ -6,7 +6,7 @@ const year = new Date().getFullYear();
 <footer>
   <div class="container footer-grid">
     <div class="identity"><a href="/">{profile.name}</a><p>{profile.headline}</p><p class="status">{profile.status}</p></div>
-    <div><h2>Navigate</h2><ul><li><a href="/research/">Research</a></li><li><a href="/publications/">Publications</a></li><li><a href="/experience/">Experience</a></li><li><a href="/cv/">HTML CV</a></li></ul></div>
+    <div><h2>Navigate</h2><ul><li><a href="/research/">Research</a></li><li><a href="/publications/">Publications</a></li><li><a href="/experience/">Experience</a></li><li><a href="/cv/">CV</a></li></ul></div>
     <div><h2>Profiles</h2><ul>{primarySocials.map((item)=><li><a href={item.href} rel="me noreferrer">{item.label} ↗</a></li>)}</ul></div>
     <div><h2>Also on</h2><ul>{secondarySocials.map((item)=><li><a href={item.href} rel="me noreferrer">{item.label} ↗</a></li>)}{communitySocials.map((item)=><li class="community"><a href={item.href} rel="me noreferrer">{item.label} ↗</a></li>)}</ul></div>
   </div>
