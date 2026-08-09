@@ -13,7 +13,7 @@ export const seo = {
   },
   experience: {
     title: "Experience | Sher Afghan Malik — Scientific Computing & Research Software",
-    description: "Research, scientific-computing, research-software, university-teaching, and software-engineering experience of Sher Afghan Malik.",
+    description: "Sher Afghan Malik's research and engineering experience across scientific computing, machine learning, research software, university teaching, and software development.",
   },
   cv: {
     title: "CV | Sher Afghan Malik — Scientific Computing & Machine Learning",
